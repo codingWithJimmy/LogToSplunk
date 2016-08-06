@@ -15,6 +15,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityEvent;
+import org.bukkit.potion.PotionEffect;
 
 import java.util.Properties;
 
@@ -41,16 +42,24 @@ public class CreatureEventLogger extends AbstractEventLogger implements Listener
 
         LoggableCreatureEvent entityEvent = new LoggableCreatureEvent(world.getFullTime(), minecraft_server, world.getName(), action);
 
-        if (event.getEntityType() == EntityType.SKELETON) {
-            Skeleton skeleton = (org.bukkit.entity.Skeleton) event.getEntity();
+        LivingEntity spCreature = new LivingEntity();
+        spCreature.setType("creature");
+        spCreature.setCurrentHealth(((org.bukkit.entity.LivingEntity)entity).getHealth());
+        spCreature.setMaxHealth(((org.bukkit.entity.LivingEntity)entity).getMaxHealth());
+        spCreature.setLocation(coordinates);
 
-            entityEvent.setEntity(new LivingEntity("creature", skeleton.getSkeletonType() + "_SKELETON", coordinates));
-
-        } else {
-
-            entityEvent.setEntity(new LivingEntity("creature", event.getEntityType().name(), coordinates));
+        for (PotionEffect potion : (((org.bukkit.entity.LivingEntity)entity).getActivePotionEffects())) {
+            spCreature.addPotions(potion.getType().getName() + ":" + potion.getAmplifier());
         }
 
+        if (event.getEntityType() == EntityType.SKELETON) {
+            Skeleton skeleton = (org.bukkit.entity.Skeleton) event.getEntity();
+            spCreature.setName(skeleton.getSkeletonType() + "_SKELETON");
+        } else {
+            spCreature.setName(event.getEntityType().name());
+        }
+
+        entityEvent.setEntity(spCreature);
         return entityEvent;
     }
 }
