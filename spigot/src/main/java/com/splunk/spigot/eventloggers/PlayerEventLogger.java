@@ -67,6 +67,9 @@ public class PlayerEventLogger extends AbstractEventLogger implements Listener {
 
         LivingEntity eventPlayer = new LivingEntity("player", player.getDisplayName());
 
+        eventPlayer.setMaxHealth(player.getMaxHealth());
+        eventPlayer.getCurrentHealth(player.getHealth());
+
         playerEvent.setPlayer(eventPlayer);
 
         if (event instanceof PlayerMoveEvent) {
@@ -81,6 +84,7 @@ public class PlayerEventLogger extends AbstractEventLogger implements Listener {
 
             Point3d source = new Point3d(((PlayerMoveEvent) event).getFrom().getX(), ((PlayerMoveEvent) event).getFrom().getY(), ((PlayerMoveEvent) event).getFrom().getZ());
             playerEvent.setSrc(source);
+
 
         }
         return playerEvent;
