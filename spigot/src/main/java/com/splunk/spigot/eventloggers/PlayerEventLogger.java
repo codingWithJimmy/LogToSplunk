@@ -68,7 +68,7 @@ public class PlayerEventLogger extends AbstractEventLogger implements Listener {
         LivingEntity eventPlayer = new LivingEntity("player", player.getDisplayName());
 
         eventPlayer.setMaxHealth(player.getMaxHealth());
-        eventPlayer.getCurrentHealth(player.getHealth());
+        eventPlayer.setCurrentHealth(player.getHealth());
 
         playerEvent.setPlayer(eventPlayer);
 
