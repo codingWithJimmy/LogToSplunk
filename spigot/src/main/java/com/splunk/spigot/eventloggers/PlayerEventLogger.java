@@ -18,6 +18,7 @@ import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
+import org.bukkit.potion.PotionEffect;
 
 import java.util.Properties;
 
@@ -70,6 +71,10 @@ public class PlayerEventLogger extends AbstractEventLogger implements Listener {
         eventPlayer.setMaxHealth(player.getMaxHealth());
         eventPlayer.setCurrentHealth(player.getHealth());
 
+
+        for (PotionEffect potion : player.getActivePotionEffects()) {
+            eventPlayer.addPotions(potion.getType().getName() + ":" + potion.getAmplifier());
+        }
         playerEvent.setPlayer(eventPlayer);
 
         if (event instanceof PlayerMoveEvent) {
