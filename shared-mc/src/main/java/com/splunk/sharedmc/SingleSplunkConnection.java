@@ -100,10 +100,7 @@ public class SingleSplunkConnection implements SplunkConnection, Runnable {
         // Create the Splunk HTTP Event Collector packet as defined in http://dev.splunk.com/view/event-collector/SP-CAAAE6M
         event.put("time", System.currentTimeMillis() / 1000L);
         event.put("host", hostname);
-        event.put("source", "minecraft-app");
-        event.put("sourcetype", "minecraft_log");
         event.put("event", message);
-
         messagesToSend.append(event.toString());
     }
 
