@@ -18,6 +18,7 @@ import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
+import org.bukkit.potion.PotionEffect;
 
 import java.util.Properties;
 
@@ -67,6 +68,13 @@ public class PlayerEventLogger extends AbstractEventLogger implements Listener {
 
         LivingEntity eventPlayer = new LivingEntity("player", player.getDisplayName());
 
+        eventPlayer.setMaxHealth(player.getMaxHealth());
+        eventPlayer.setCurrentHealth(player.getHealth());
+
+
+        for (PotionEffect potion : player.getActivePotionEffects()) {
+            eventPlayer.addPotions(potion.getType().getName() + ":" + potion.getAmplifier());
+        }
         playerEvent.setPlayer(eventPlayer);
 
         if (event instanceof PlayerMoveEvent) {
@@ -81,6 +89,7 @@ public class PlayerEventLogger extends AbstractEventLogger implements Listener {
 
             Point3d source = new Point3d(((PlayerMoveEvent) event).getFrom().getX(), ((PlayerMoveEvent) event).getFrom().getY(), ((PlayerMoveEvent) event).getFrom().getZ());
             playerEvent.setSrc(source);
+
 
         }
         return playerEvent;
