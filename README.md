@@ -11,7 +11,7 @@ Event logging plugin for Spigot with support for Splunk HTTP Event Collector.
 
 ### Installing the plugin
 
-1. Download the [latest pre-compiled version of the plugin](https://github.com/PowerSchill/LogToSplunk/releases).
+1. Download the [latest pre-compiled version of the plugin](https://github.com/PowerSchill/LogToSplunk/releases/latest).
 2. Configure the Splunk HTTP Event Collector on your Splunk instance according to the [documentation](http://dev.splunk.com/view/event-collector/SP-CAAAE6M).
 3. Extract the LogToSplunk.zip file within the plugins directory of your Spigot Minecraft server. 
 4. Copy the *LogToSplunk.properties.spec* file in the plugins/LogToSplunk directory to *LogToSplunk.properties*.
