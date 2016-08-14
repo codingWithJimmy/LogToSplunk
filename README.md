@@ -27,3 +27,5 @@ Please use the GitHub [issue tracker](https://github.com/PowerSchill/LogToSplunk
 ## Credit
 
 > The code in this project was originally developed from the[PowerSchill/minecraft-app](https://github.com/PowerSchill/minecraft-app) project forked from the [Splunk/minecraft-app](https://github.com/splunk/minecraft-app).
+
+> Minecraft Items list (items.json) obtained from http://minecraft-ids.grahamedgecombe.com/api.
