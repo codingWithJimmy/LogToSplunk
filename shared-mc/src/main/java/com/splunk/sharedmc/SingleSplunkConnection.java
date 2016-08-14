@@ -31,16 +31,14 @@ public class SingleSplunkConnection implements SplunkConnection, Runnable {
             Integer.valueOf(System.getProperty("splunk_mc.reconnect_time", DEFAULT_RECONNECT_TIME));
     private final Logger logger;
     private final String url;
+
     private String BASE_URL = "http://%s:%s/services/collector/event/1.0";
     private CloseableHttpClient httpClient;
-
     private String server;
     private String token;
-
     // lazy
     private StringBuilder messagesToSend = new StringBuilder();
     private StringBuilder messagesOnRunway;
-
     private String hostname = "";
 
 
@@ -67,6 +65,7 @@ public class SingleSplunkConnection implements SplunkConnection, Runnable {
 
 
         }
+
 
         addFlushShutdownHook();
 
