@@ -164,6 +164,15 @@ public class MCItemCatalogue implements Iterable<MCItem> {
                 case "oak_stairs":
                     item.setText_type("WOOD_STAIRS");
                     break;
+                case "standing_sign":
+                    item.setText_type("SIGN_POST");
+                    break;
+                case "rail":
+                    item.setText_type("RAILS");
+                    break;
+                case "wooden_pressure_plate":
+                    item.setText_type("WOOD_PLATE");
+                    break;
                 default:
                     item.setText_type(item.getText_type().toUpperCase());
                     break;
