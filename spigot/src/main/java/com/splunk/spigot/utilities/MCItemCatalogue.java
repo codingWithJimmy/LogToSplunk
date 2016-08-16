@@ -173,6 +173,33 @@ public class MCItemCatalogue implements Iterable<MCItem> {
                 case "wooden_pressure_plate":
                     item.setText_type("WOOD_PLATE");
                     break;
+                case "golden_rail":
+                    item.setText_type("POWERED_RAIL");
+                    break;
+                case "cake":
+                    item.setText_type("CAKE_BLOCK");
+                    break;
+                case "repeater":
+                    item.setText_type("DIODE_BLOCK_OFF");
+                    break;
+                case "unpowered_repeater":
+                    item.setText_type("DIODE_BLOCK_ON");
+                    break;
+                case "unlit_redstone_torch":
+                    item.setText_type("REDSTONE_TORCH_OFF");
+                    break;
+                case "redstone_torch":
+                    item.setText_type("REDSTONE_TORCH_ON");
+                    break;
+                case "snow_layer":
+                    item.setText_type("SNOW");
+                    break;
+                case "heavy_weighted_pressure_plate":
+                    item.setText_type("STONE_PLATE");
+                    break;
+                case "red_flower":
+                    item.setText_type("RED_ROSE");
+                    break;
                 default:
                     item.setText_type(item.getText_type().toUpperCase());
                     break;
