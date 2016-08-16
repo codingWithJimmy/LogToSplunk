@@ -200,6 +200,12 @@ public class MCItemCatalogue implements Iterable<MCItem> {
                 case "red_flower":
                     item.setText_type("RED_ROSE");
                     break;
+                case "waterlily":
+                    item.setText_type("WATER_LILY");
+                    break;
+                case "nether_wart":
+                    item.setText_type("NETHER_WARTS");
+                    break;
                 default:
                     item.setText_type(item.getText_type().toUpperCase());
                     break;
