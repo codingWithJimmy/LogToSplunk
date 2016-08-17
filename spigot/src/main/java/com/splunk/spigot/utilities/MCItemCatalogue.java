@@ -137,6 +137,9 @@ public class MCItemCatalogue implements Iterable<MCItem> {
                 case "redstone_lamp":
                     item.setText_type("REDSTONE_LAMP_OFF");
                     break;
+                case "lit_redstone_lamp":
+                    item.setText_type("REDSTONE_LAMP_ON");
+                    break;
                 case "mycelium":
                     item.setText_type("MYCEL");
                     break;
@@ -205,6 +208,21 @@ public class MCItemCatalogue implements Iterable<MCItem> {
                     break;
                 case "nether_wart":
                     item.setText_type("NETHER_WARTS");
+                    break;
+                case "bed":
+                    item.setText_type("BED_BLOCK");
+                    break;
+                case "piston_head":
+                    item.setText_type("PISTON_EXTENSION");
+                    break;
+                case "iron_door":
+                    item.setText_type("IRON_DOOR_BLOCK");
+                    break;
+                case "reeds":
+                    item.setText_type("SUGAR_CANE_BLOCK");
+                    break;
+                case "farmland":
+                    item.setText_type("SOIL");
                     break;
                 default:
                     item.setText_type(item.getText_type().toUpperCase());
