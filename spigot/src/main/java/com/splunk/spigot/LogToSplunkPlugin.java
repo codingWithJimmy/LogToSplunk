@@ -4,25 +4,27 @@ import com.splunk.spigot.eventloggers.BlockEventLogger;
 import com.splunk.spigot.eventloggers.CreatureEventLogger;
 import com.splunk.spigot.eventloggers.DeathEventLogger;
 import com.splunk.spigot.eventloggers.PlayerEventLogger;
+import com.splunk.spigot.utilities.MCItemCatalogue;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.util.Properties;
-
+import java.util.stream.Collectors;
 
 public class LogToSplunkPlugin extends JavaPlugin implements Listener {
-    public static final String MODID = "logtosplunk";
-    public static final String VERSION = "1.1-SNAPSHOT";
-    public static final String NAME = "Splunk for Minecraft";
     public static final String SPLUNK_PROPERTIES = "/plugins/LogToSplunk/LogToSplunk.properties";
     private static final Logger logger = LogManager.getLogger(LogToSplunkPlugin.class.getName());
+    private final String itemsFile = "/plugins/LogToSplunk/items.json";
+    private String itemsFileContents = "";
     private Properties properties;
-
 
     /**
      * Called when the mod is initialized.
@@ -42,6 +44,28 @@ public class LogToSplunkPlugin extends JavaPlugin implements Listener {
                     e);
         }
 
+
+        // Read items file
+        try {
+
+            FileInputStream inputStream;
+
+            File configFile = new File(System.getProperty("user.dir") + itemsFile);
+
+            inputStream = new FileInputStream(configFile);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
+            itemsFileContents = reader.lines().collect(Collectors.joining("\n"));
+
+            reader.close();
+        } catch (Exception e) {
+            logger.info(e.getMessage());
+        }
+
+
+        MCItemCatalogue MCItems = MCItemCatalogue.getInstance();
+        MCItems.parseItemsFile(itemsFileContents);
+
         if (Boolean.valueOf(properties.getProperty("splunk.craft.logging.block.enable", "true")))
             getServer().getPluginManager().registerEvents(new BlockEventLogger(properties), this);
 
@@ -54,7 +78,7 @@ public class LogToSplunkPlugin extends JavaPlugin implements Listener {
         if (Boolean.valueOf(properties.getProperty("splunk.craft.logging.death.enable", "true")))
             getServer().getPluginManager().registerEvents(new DeathEventLogger(properties), this);
 
-        logAndSend("Splunk for Minecraft initialized.");
+
     }
 
     /**
