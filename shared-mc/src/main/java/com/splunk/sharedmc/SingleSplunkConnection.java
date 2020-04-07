@@ -32,7 +32,7 @@ public class SingleSplunkConnection implements SplunkConnection, Runnable {
     private final Logger logger;
     private final String url;
 
-    private String BASE_URL = "http://%s:%s/services/collector/event/1.0";
+    private String BASE_URL = "https://%s:%s/services/collector/event/1.0";
     private CloseableHttpClient httpClient;
     private String server;
     private String token;

@@ -6,8 +6,6 @@ import com.splunk.sharedmc.loggable_events.LoggableBlockEvent.BlockEventAction;
 import com.splunk.sharedmc.utilities.Instrument;
 import com.splunk.sharedmc.utilities.LivingEntity;
 import com.splunk.sharedmc.utilities.Point3d;
-import com.splunk.spigot.utilities.MCItem;
-import com.splunk.spigot.utilities.MCItemCatalogue;
 
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -29,9 +27,6 @@ import java.util.Properties;
  * Handles the logging of block events.
  */
 public class BlockEventLogger extends AbstractEventLogger implements Listener {
-
-
-    MCItemCatalogue MCItems = MCItemCatalogue.getInstance();
 
     public BlockEventLogger(Properties properties) {
         super(properties);
@@ -139,27 +134,7 @@ public class BlockEventLogger extends AbstractEventLogger implements Listener {
     }
 
     public String getBlockName(Block block) {
-
-        String blockName = "UNKNOWN";
-
-        for (MCItem item : MCItems.getMCItems()) {
-
-
-            // First match type <--> MATERIAL
-            if (item.getText_type().equals(block.getType().toString())) {
-
-                // Default to base block for types where durability means something else like direction facing.
-                blockName = item.getText_type();
-
-                // Next match on meta number
-                if (item.getMeta() == block.getState().getData().toItemStack().getDurability()) {
-                    blockName = item.getName();
-                    return blockName;
-                }
-            }
-
-
-        }
+        String blockName = block.getType().toString();
         return blockName;
     }
 
