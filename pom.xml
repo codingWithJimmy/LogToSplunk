@@ -16,7 +16,7 @@
     <repositories>
         <repository>
             <id>maven-default</id>
-            <url>https://mvnrepository.com/artifact/</url>
+            <url>https://repo1.maven.org/maven2/</url>
         </repository>
         <repository>
             <id>spigot-repo</id>
