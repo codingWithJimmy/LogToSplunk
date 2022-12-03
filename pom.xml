@@ -15,6 +15,10 @@
     <packaging>pom</packaging>
     <repositories>
         <repository>
+            <id>maven-default</id>
+            <url>https://mvnrepository.com/artifact/</url>
+        </repository>
+        <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
