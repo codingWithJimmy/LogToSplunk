@@ -4,4 +4,4 @@ version: ${project.version}
 description: This plugin registers event handlers and logs events to Splunk via the Splunk HTTP Event Collector.
 author: PowerSchill and Jimmy Maple
 website: https://github.com/jimmyatSplunk/LogToSplunk
-api-version: 1.18
+api-version: 1.19
